@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Famous Astrology Expert - Instant Consultation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-bg: #0a0a0f;
+            --dark-secondary: #1a1a2e;
+            --accent-gold: #d4af37;
+            --accent-purple: #6f42c1;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --success: #4caf50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Top Contact Bar */
+        .contact-bar {
+            background-color: var(--accent-gold);
+            color: var(--dark-bg);
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .contact-bar a {
+            color: var(--dark-bg);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 6px 14px;
+            background-color: rgba(10, 10, 15, 0.2);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-bar a:hover {
+            background-color: var(--dark-bg);
+            color: var(--accent-gold);
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--accent-gold), #e6c76f);
+            color: var(--dark-bg);
+            padding: 12px 28px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a0f2e 50%, #0a0a0f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(111, 66, 193, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 8vw, 72px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-gold), #e6c76f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 3vw, 24px);
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .hero-problems {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .problem-tag {
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent-gold);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-gold), #e6c76f);
+            color: var(--dark-bg);
+            padding: 16px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-gold);
+            padding: 16px 40px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-gold);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background-color: var(--dark-secondary);
+            padding: 80px 20px;
+        }
+
+        .trust-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .trust-card {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(111, 66, 193, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .trust-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .trust-card h3 {
+            color: var(--accent-gold);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .trust-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Problems Section */
+        .problems-section {
+            padding: 80px 20px;
+            background-color: var(--dark-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(28px, 6vw, 48px);
+            margin-bottom: 60px;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--accent-gold);
+        }
+
+        .problems-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .problem-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(111, 66, 193, 0.1));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .problem-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .problem-card h4 {
+            color: var(--text-light);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--dark-secondary);
+            padding: 80px 20px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(111, 66, 193, 0.1));
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+        }
+
+        .about-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .about-content h2 span {
+            color: var(--accent-gold);
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            color: var(--text-muted);
+        }
+
+        .highlight::before {
+            content: '✓';
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Services Section */
+        .services-section {
+            background-color: var(--dark-bg);
+            padding: 80px 20px;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(111, 66, 193, 0.08));
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .service-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        .service-card h3 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--dark-secondary);
+            padding: 80px 20px;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(111, 66, 193, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            font-size: 16px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Why Choose Us */
+        .why-section {
+            background-color: var(--dark-bg);
+            padding: 80px 20px;
+        }
+
+        .why-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .why-content ul {
+            list-style: none;
+        }
+
+        .why-content li {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .why-content li::before {
+            content: '★';
+            color: var(--accent-gold);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .why-image {
+            height: 400px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(111, 66, 193, 0.1));
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--accent-gold), #e6c76f);
+            color: var(--dark-bg);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: clamp(28px, 6vw, 48px);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .cta-banner-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-dark {
+            background-color: var(--dark-bg);
+            color: var(--accent-gold);
+            padding: 16px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background-color: var(--dark-secondary);
+            padding: 80px 20px;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background-color: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent-gold), #e6c76f);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            padding: 40px 20px 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-section p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 10px;
+                font-size: 12px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-container,
+            .why-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image,
+            .why-image {
+                height: 300px;
+                font-size: 80px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-problems {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .problem-tag {
+                display: inline-block;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 10px 0;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .hero {
+                min-height: 80vh;
+                padding: 40px 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-banner {
+                padding: 50px 15px;
+            }
+
+            .cta-banner h2 {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="contact-bar">
+        <span>📞 Call Now for Instant Astrology Consultation</span>
+        <a href="tel:+919876543210">+91 98765 43210</a>
+        <a href="https://wa.me/919876543210">💬 WhatsApp</a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">✨ Astro Guru</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cta-btn" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth'})">Talk to Astrologer</button>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>World Famous Astrology Expert</h1>
+            <p class="hero-subtitle">Expert Solutions for Your Life Challenges</p>
+            <div class="hero-problems">
+                <span class="problem-tag">Love Marriage</span>
+                <span class="problem-tag">Relationship Issues</span>
+                <span class="problem-tag">Career Problems</span>
+                <span class="problem-tag">Business Issues</span>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth'})">📞 Call Now</button>
+                <button class="btn-secondary" onclick="window.open('https://wa.me/919876543210', '_blank')">💬 WhatsApp Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="trust-grid">
+            <div class="trust-card">
+                <h3>25+ Years</h3>
+                <p>Professional Astrology Experience</p>
+            </div>
+            <div class="trust-card">
+                <h3>5000+</h3>
+                <p>Happy & Satisfied Clients</p>
+            </div>
+            <div class="trust-card">
+                <h3>99%</h3>
+                <p>Accurate Predictions</p>
+            </div>
+            <div class="trust-card">
+                <h3>24/7</h3>
+                <p>Consultation Available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems We Solve -->
+    <section class="problems-section">
+        <h2 class="section-title">Problems We <span>Solve</span></h2>
+        <div class="problems-grid">
+            <div class="problem-card">
+                <div class="problem-icon">💕</div>
+                <h4>Love Problem</h4>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">💍</div>
+                <h4>Marriage Problem</h4>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">👥</div>
+                <h4>Relationship Problem</h4>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">💼</div>
+                <h4>Business Problem</h4>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">🎯</div>
+                <h4>Career Problem</h4>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">👨‍👩‍👧‍👦</div>
+                <h4>Family Problem</h4>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">⚖️</div>
+                <h4>Court Case</h4>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">🏥</div>
+                <h4>Health Issues</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-image">🔮</div>
+            <div class="about-content">
+                <h2>About <span>Our Expert</span></h2>
+                <p>With over 25 years of professional experience in Vedic astrology, our expert has dedicated their life to providing accurate guidance and spiritual solutions to thousands of clients worldwide.</p>
+                <p>Specializing in marriage, relationships, career, and business astrology, they combine ancient wisdom with modern understanding to deliver personalized solutions for your unique challenges.</p>
+                <p>Trusted by celebrities, business leaders, and everyday people seeking clarity in their lives, our astrologer maintains the highest standards of confidentiality and professionalism.</p>
+                <div class="about-highlights">
+                    <div class="highlight">Vedic Astrology Certified Practitioner</div>
+                    <div class="highlight">Advanced Numerology & Palmistry Expert</div>
+                    <div class="highlight">Featured in National & International Publications</div>
+                    <div class="highlight">Spiritual Counselor & Life Coach</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <h2 class="section-title">Our <span>Services</span></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💕</div>
+                <h3>Love Marriage Specialist</h3>
+                <p>Expert guidance for relationship issues and marriage problems with proven remedies and solutions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔥</div>
+                <h3>Black Magic Removal</h3>
+                <p>Identify and remove negative energies using powerful spiritual practices and Vedic remedies.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Vashikaran Specialist</h3>
+                <p>Powerful Vashikaran services for attraction, influence, and relationship harmony.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📖</div>
+                <h3>Horoscope Reading</h3>
+                <p>Detailed birth chart analysis and yearly predictions based on your zodiac and planetary positions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👫</div>
+                <h3>Kundli Matching</h3>
+                <p>Astrological compatibility analysis for marriage and long-term relationships.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Career Guidance</h3>
+                <p>Navigate your professional path with astrological insights and personalized recommendations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <h2 class="section-title">Client <span>Testimonials</span></h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"My life changed completely after consulting with this astrologer. The solutions provided were practical and effective. I highly recommend their services!"</p>
+                <div class="testimonial-author">— Priya Sharma, Delhi</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"After years of struggling in my relationship, their guidance helped us find our way back. The predictions were spot on. Thank you!"</p>
+                <div class="testimonial-author">— Rajesh Kumar, Mumbai</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Professional, confidential, and remarkably accurate. My business problems were solved within weeks of following the recommended remedies."</p>
+                <div class="testimonial-author">— Anita Patel, Bangalore</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The career guidance I received was life-changing. I got the promotion I was waiting for. Highly professional and ethical astrologer!"</p>
+                <div class="testimonial-author">— Vikram Singh, Pune</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Consulted for marriage issues and received practical, compassionate advice. The expert is truly knowledgeable and caring. Highly recommended!"</p>
+                <div class="testimonial-author">— Neha Gupta, Gurgaon</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The most accurate horoscope reading I've ever received. Every prediction has come true. Best investment for my future!"</p>
+                <div class="testimonial-author">— Arun Verma, Chennai</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-section">
+        <div class="why-container">
+            <div class="why-content">
+                <h2><span>Why Choose</span> Us?</h2>
+                <ul>
+                    <li>100% Confidential & Secure Consultation</li>
+                    <li>Quick & Effective Solutions with Results</li>
+                    <li>Scientific Vedic Astrology Approach</li>
+                    <li>Trusted by Thousands Worldwide</li>
+                    <li>24/7 Availability for Your Convenience</li>
+                    <li>Money-Back Satisfaction Guarantee</li>
+                    <li>Professional & Ethical Practices</li>
+                    <li>Customized Solutions for Each Client</li>
+                </ul>
+            </div>
+            <div class="why-image">🌟</div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <h2>Talk to an Expert Astrologer Today</h2>
+        <div class="cta-banner-buttons">
+            <button class="btn-dark" onclick="document.getElementById('contact-form').scrollIntoView({behavior:'smooth'})">📞 Call Now</button>
+            <button class="btn-dark" onclick="window.open('https://wa.me/919876543210', '_blank')">💬 WhatsApp Chat</button>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get Your Free <span>Consultation</span></h2>
+            <form id="contact-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="problem">Describe Your Problem *</label>
+                    <textarea id="problem" name="problem" required placeholder="Tell us about your situation..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">📩 Send Consultation Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">Love & Marriage</a>
+                <a href="#services">Career Guidance</a>
+                <a href="#services">Business Consulting</a>
+                <a href="#services">Horoscope Reading</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📞 Phone: +91 98765 43210</p>
+                <p>💬 WhatsApp: +91 98765 43210</p>
+                <p>📧 Email: contact@astroguru.com</p>
+                <p>📍 Location: New Delhi, India</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Astro Guru. All Rights Reserved. | Disclaimer: Astrology services are for entertainment purposes.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const problem = document.getElementById('problem').value;
+
+            // Show success message
+            alert(`Thank you ${name}! We'll contact you at ${phone} soon.\n\nYour consultation request has been received.`);
+
+            // Reset form
+            document.getElementById('contact-form').reset();
+
+            // In a real application, this would send data to a backend/email service
+            console.log('Form submitted:', { name, phone, problem });
+        }
+
+        // Scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.trust-card, .problem-card, .service-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
